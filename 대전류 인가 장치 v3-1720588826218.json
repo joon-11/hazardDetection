@@ -1,0 +1,3661 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 4,
+  "links": [],
+  "liveNow": true,
+  "panels": [
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 39,
+      "panels": [],
+      "title": "온도, CPU 온도, RSSI, 경고등",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "edln43xbpkfeoa"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "super-light-yellow",
+                "value": 51
+              },
+              {
+                "color": "dark-orange",
+                "value": 81
+              },
+              {
+                "color": "dark-red",
+                "value": 101
+              }
+            ]
+          },
+          "unit": "celsius"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 6,
+        "x": 0,
+        "y": 1
+      },
+      "id": 12,
+      "maxDataPoints": 50000,
+      "options": {
+        "colorMode": "background_solid",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.4.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "query": "from(bucket:\"modbus2\")\r\n|> range(start: -5d)\r\n|> filter(fn: (r) => r._field == \"Temperature1\")\r\n|> map(fn: (r) => ({\r\n    _field: \"온도1\",\r\n    _time: r._time,\r\n    _value: r._value/10\r\n  }))\r\n",
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "hide": false,
+          "query": "from(bucket:\"modbus2\")\r\n|> range(start: -5d)\r\n|> filter(fn: (r) => r._field == \"Temperature2\")\r\n|> map(fn: (r) => ({\r\n    _field: \"온도2\",\r\n    _time: r._time,\r\n    _value: r._value/10\r\n  }))\r\n",
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "hide": false,
+          "query": "from(bucket:\"modbus2\")\r\n|> range(start: -5d)\r\n|> filter(fn: (r) => r._field == \"Temperature3\")\r\n|> map(fn: (r) => ({\r\n    _field: \"온도3\",\r\n    _time: r._time,\r\n    _value: r._value/10\r\n  }))\r\n",
+          "refId": "C"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "hide": false,
+          "query": "from(bucket:\"modbus2\")\r\n|> range(start: -5d)\r\n|> filter(fn: (r) => r._field == \"Temperature4\")\r\n|> map(fn: (r) => ({\r\n    _field: \"온도4\",\r\n    _time: r._time,\r\n    _value: r._value/10\r\n  }))\r\n",
+          "refId": "D"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "hide": false,
+          "query": "from(bucket:\"modbus2\")\r\n|> range(start: -5d)\r\n|> filter(fn: (r) => r._field == \"Temperature5\")\r\n|> map(fn: (r) => ({\r\n    _field: \"온도5\",\r\n    _time: r._time,\r\n    _value: r._value/10\r\n  }))\r\n",
+          "refId": "E"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "hide": false,
+          "query": "from(bucket:\"modbus2\")\r\n|> range(start: -5d)\r\n|> filter(fn: (r) => r._field == \"Temperature6\")\r\n|> map(fn: (r) => ({\r\n    _field: \"온도6\",\r\n    _time: r._time,\r\n    _value: r._value/10\r\n  }))\r\n",
+          "refId": "F"
+        }
+      ],
+      "title": "온도",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "edln43xbpkfeoa"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [
+            {
+              "options": {
+                "null": {
+                  "index": 0,
+                  "text": "no data"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 50
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 6,
+        "x": 6,
+        "y": 1
+      },
+      "id": 19,
+      "maxDataPoints": 50000,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.4.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "query": "from(bucket:\"modbus2\")\r\n|> range(start: -5d)\r\n|> filter(fn: (r) => r._field == \"CPU Temperature1\")\r\n|> map(fn: (r) => ({\r\n    _field: \"CPU 온도1\",\r\n    _time: r._time,\r\n    _value: r._value\r\n  }))\r\n",
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "hide": false,
+          "query": "from(bucket:\"modbus2\")\r\n|> range(start: -5d)\r\n|> filter(fn: (r) => r._field == \"CPU Temperature2\")\r\n|> map(fn: (r) => ({\r\n    _field: \"CPU 온도2\",\r\n    _time: r._time,\r\n    _value: r._value\r\n  }))",
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "hide": false,
+          "query": "from(bucket:\"modbus2\")\r\n|> range(start: -5d)\r\n|> filter(fn: (r) => r._field == \"CPU Temperature3\")\r\n|> map(fn: (r) => ({\r\n    _field: \"CPU 온도3\",\r\n    _time: r._time,\r\n    _value: r._value\r\n  }))",
+          "refId": "C"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "hide": false,
+          "query": "from(bucket:\"modbus2\")\r\n|> range(start: -5d)\r\n|> filter(fn: (r) => r._field == \"CPU Temperature4\")\r\n|> map(fn: (r) => ({\r\n    _field: \"CPU 온도4\",\r\n    _time: r._time,\r\n    _value: r._value\r\n  }))",
+          "refId": "D"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "hide": false,
+          "query": "from(bucket:\"modbus2\")\r\n|> range(start: -5d)\r\n|> filter(fn: (r) => r._field == \"CPU Temperature5\")\r\n|> map(fn: (r) => ({\r\n    _field: \"CPU 온도5\",\r\n    _time: r._time,\r\n    _value: r._value\r\n  }))",
+          "refId": "E"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "hide": false,
+          "query": "from(bucket:\"modbus2\")\r\n|> range(start: -5d)\r\n|> filter(fn: (r) => r._field == \"CPU Temperature6\")\r\n|> map(fn: (r) => ({\r\n    _field: \"CPU 온도6\",\r\n    _time: r._time,\r\n    _value: r._value\r\n  }))",
+          "refId": "F"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "hide": false,
+          "query": "",
+          "refId": "G"
+        }
+      ],
+      "title": "CPU 온도",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "bdfi9yf9d82kga"
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 12,
+        "y": 1
+      },
+      "id": 14,
+      "options": {
+        "alertInstanceLabelFilter": "",
+        "alertName": "",
+        "dashboardAlerts": false,
+        "datasource": "-- Grafana --",
+        "folder": {
+          "title": "평택",
+          "uid": "adln5dy5hi22ob"
+        },
+        "groupBy": [],
+        "groupMode": "default",
+        "maxItems": 20,
+        "sortOrder": 4,
+        "stateFilter": {
+          "error": true,
+          "firing": true,
+          "noData": false,
+          "normal": true,
+          "pending": true
+        },
+        "viewMode": "list"
+      },
+      "targets": [
+        {
+          "dataset": "mysql",
+          "datasource": {
+            "type": "mysql",
+            "uid": "bdfi9yf9d82kga"
+          },
+          "editorMode": "builder",
+          "format": "table",
+          "rawSql": "",
+          "refId": "A"
+        }
+      ],
+      "title": "알람",
+      "type": "alertlist"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "edln43xbpkfeoa"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "color": "green",
+                  "index": 0,
+                  "text": "안전"
+                },
+                "1": {
+                  "color": "yellow",
+                  "index": 1,
+                  "text": "주의"
+                },
+                "2": {
+                  "color": "orange",
+                  "index": 2,
+                  "text": "경고"
+                },
+                "3": {
+                  "color": "red",
+                  "index": 3,
+                  "text": "위험"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 6,
+        "x": 18,
+        "y": 1
+      },
+      "id": 46,
+      "maxDataPoints": 10000,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.4.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "edln43xbpkfeoa"
+          },
+          "query": "from(bucket: \"modbus2\")\r\n  |> range(start: -1)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"predict\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"sensor1\")\r\n  |> filter(fn: (r) => r[\"tag1\"] == \"value1\")\r\n  |> last() \r\n  |> map(fn: (r) => ({\r\n    _field: \"1번 센서\",\r\n    _time: r._time, \r\n    _value: r._value\r\n  }))",
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "edln43xbpkfeoa"
+          },
+          "hide": false,
+          "query": "from(bucket: \"modbus2\")\r\n  |> range(start: -1m)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"predict\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"sensor2\")\r\n  |> filter(fn: (r) => r[\"tag1\"] == \"value1\")\r\n  |> last()\r\n    |> map(fn: (r) => ({\r\n    _field: \"2번 센서\",\r\n    _time: r._time, \r\n    _value: r._value\r\n  }))",
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "edln43xbpkfeoa"
+          },
+          "hide": false,
+          "query": "from(bucket: \"modbus2\")\r\n  |> range(start: -1m)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"predict\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"sensor3\")\r\n  |> filter(fn: (r) => r[\"tag1\"] == \"value1\")\r\n  |> last()\r\n    |> map(fn: (r) => ({\r\n    _field: \"3번 센서\",\r\n    _time: r._time, \r\n    _value: r._value\r\n  }))",
+          "refId": "C"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "edln43xbpkfeoa"
+          },
+          "hide": false,
+          "query": "from(bucket: \"modbus2\")\r\n  |> range(start: -1m)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"predict\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"sensor4\")\r\n  |> filter(fn: (r) => r[\"tag1\"] == \"value1\")\r\n  |> last()\r\n    |> map(fn: (r) => ({\r\n    _field: \"4번 센서\",\r\n    _time: r._time, \r\n    _value: r._value\r\n  }))",
+          "refId": "D"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "edln43xbpkfeoa"
+          },
+          "hide": false,
+          "query": "from(bucket: \"modbus2\")\r\n  |> range(start: -1m)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"predict\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"sensor5\")\r\n  |> filter(fn: (r) => r[\"tag1\"] == \"value1\")\r\n  |> last()\r\n    |> map(fn: (r) => ({\r\n    _field: \"5번 센서\",\r\n    _time: r._time, \r\n    _value: r._value\r\n  }))",
+          "refId": "E"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "edln43xbpkfeoa"
+          },
+          "hide": false,
+          "query": "from(bucket: \"modbus2\")\r\n  |> range(start: -1m)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"predict\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"sensor6\")\r\n  |> filter(fn: (r) => r[\"tag1\"] == \"value1\")\r\n  |> last()\r\n    |> map(fn: (r) => ({\r\n    _field: \"6번 센서\",\r\n    _time: r._time, \r\n    _value: r._value\r\n  }))",
+          "refId": "F"
+        }
+      ],
+      "title": "센서 경고등",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "edln43xbpkfeoa"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 6,
+        "x": 12,
+        "y": 5
+      },
+      "id": 18,
+      "maxDataPoints": 50001,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.4.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "query": "from(bucket:\"modbus2\")\r\n|> range(start: -5d)\r\n|> filter(fn: (r) => r._field == \"RSSI1\")\r\n|> map(fn: (r) => ({\r\n    _field: \"RSSI1\",\r\n    _time: r._time,\r\n    _value: r._value\r\n  }))\r\n",
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "hide": false,
+          "query": "from(bucket:\"modbus2\")\r\n|> range(start: -5d)\r\n|> filter(fn: (r) => r._field == \"RSSI2\")\r\n|> map(fn: (r) => ({\r\n    _field: \"RSSI2\",\r\n    _time: r._time,\r\n    _value: r._value\r\n  }))\r\n",
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "hide": false,
+          "query": "from(bucket:\"modbus2\")\r\n|> range(start: -5d)\r\n|> filter(fn: (r) => r._field == \"RSSI3\")\r\n|> map(fn: (r) => ({\r\n    _field: \"RSSI3\",\r\n    _time: r._time,\r\n    _value: r._value\r\n  }))\r\n",
+          "refId": "C"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "hide": false,
+          "query": "from(bucket:\"modbus2\")\r\n|> range(start: -5d)\r\n|> filter(fn: (r) => r._field == \"RSSI4\")\r\n|> map(fn: (r) => ({\r\n    _field: \"RSSI4\",\r\n    _time: r._time,\r\n    _value: r._value\r\n  }))\r\n",
+          "refId": "D"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "hide": false,
+          "query": "from(bucket:\"modbus2\")\r\n|> range(start: -5d)\r\n|> filter(fn: (r) => r._field == \"RSSI5\")\r\n|> map(fn: (r) => ({\r\n    _field: \"RSSI5\",\r\n    _time: r._time,\r\n    _value: r._value\r\n  }))\r\n",
+          "refId": "E"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "hide": false,
+          "query": "from(bucket:\"modbus2\")\r\n|> range(start: -5d)\r\n|> filter(fn: (r) => r._field == \"RSSI6\")\r\n|> map(fn: (r) => ({\r\n    _field: \"RSSI6\",\r\n    _time: r._time,\r\n    _value: r._value\r\n  }))\r\n",
+          "refId": "F"
+        }
+      ],
+      "title": "RSSI",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "edln43xbpkfeoa"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "celsius"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "센서1 예측온도"
+            },
+            "properties": [
+              {
+                "id": "custom.lineStyle",
+                "value": {
+                  "dash": [
+                    10,
+                    10
+                  ],
+                  "fill": "dash"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "센서2 예측온도"
+            },
+            "properties": [
+              {
+                "id": "custom.lineStyle",
+                "value": {
+                  "dash": [
+                    10,
+                    10
+                  ],
+                  "fill": "dash"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "센서3 예측온도"
+            },
+            "properties": [
+              {
+                "id": "custom.lineStyle",
+                "value": {
+                  "dash": [
+                    10,
+                    10
+                  ],
+                  "fill": "dash"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "센서4 예측온도"
+            },
+            "properties": [
+              {
+                "id": "custom.lineStyle",
+                "value": {
+                  "dash": [
+                    10,
+                    10
+                  ],
+                  "fill": "dash"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "센서5 예측온도"
+            },
+            "properties": [
+              {
+                "id": "custom.lineStyle",
+                "value": {
+                  "dash": [
+                    10,
+                    10
+                  ],
+                  "fill": "dash"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "센서6 예측온도"
+            },
+            "properties": [
+              {
+                "id": "custom.lineStyle",
+                "value": {
+                  "dash": [
+                    10,
+                    10
+                  ],
+                  "fill": "dash"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 9,
+        "x": 0,
+        "y": 7
+      },
+      "id": 13,
+      "maxDataPoints": 50000,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "query": "from(bucket:\"modbus2\")\r\n|> range(start: -5d)\r\n|> filter(fn: (r) => r._field == \"Temperature1\")\r\n|> map(fn: (r) => ({\r\n    _field: \"센서1 온도\",\r\n    _time: r._time,\r\n    _value: r._value/10\r\n  }))",
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "hide": false,
+          "query": "from(bucket:\"modbus2\")\r\n|> range(start: -5d)\r\n|> filter(fn: (r) => r._field == \"Temperature2\")\r\n|> map(fn: (r) => ({\r\n    _field: \"센서2 온도\",\r\n    _time: r._time, \r\n    _value: r._value/10\r\n  }))",
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "hide": false,
+          "query": "from(bucket:\"modbus2\")\r\n|> range(start: -5d)\r\n|> filter(fn: (r) => r._field == \"Temperature3\")\r\n|> map(fn: (r) => ({\r\n    _field: \"센서3 온도\",\r\n    _time: r._time, \r\n    _value: r._value/10\r\n  }))",
+          "refId": "C"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "edln43xbpkfeoa"
+          },
+          "hide": false,
+          "query": "from(bucket: \"modbus2\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"predict02\" and r[\"_field\"] == \"predict_temperature1\")\r\n  |> map(fn: (r) => ({\r\n      _field: \"센서1 예측온도\",\r\n      _time: r._time, \r\n      _value: r._value\r\n  }))",
+          "refId": "D"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "edln43xbpkfeoa"
+          },
+          "hide": false,
+          "query": "from(bucket: \"modbus2\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"predict02\" and r[\"_field\"] == \"predict_temperature2\")\r\n  |> keep(columns: [\"_time\", \"_value\", \"_field\", \"_start\", \"_stop\"])\r\n  |> map(fn: (r) => ({\r\n      _field: \"센서2 예측온도\",\r\n      _time: r._time, \r\n      _value: r._value\r\n  }))",
+          "refId": "E"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "edln43xbpkfeoa"
+          },
+          "hide": false,
+          "query": "from(bucket: \"modbus2\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"predict02\" and r[\"_field\"] == \"predict_temperature3\")\r\n  |> keep(columns: [\"_time\", \"_value\", \"_field\", \"_start\", \"_stop\"])\r\n  |> map(fn: (r) => ({\r\n      _field: \"센서3 예측온도\",\r\n      _time: r._time, \r\n      _value: r._value\r\n  }))",
+          "refId": "predict temperature3"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "edln43xbpkfeoa"
+          },
+          "hide": false,
+          "query": "from(bucket:\"modbus2\")\r\n|> range(start: -5d)\r\n|> filter(fn: (r) => r._field == \"Temperature4\")\r\n|> map(fn: (r) => ({\r\n    _field: \"센서4 온도\",\r\n    _time: r._time,\r\n    _value: r._value/10\r\n  }))",
+          "refId": "F"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "edln43xbpkfeoa"
+          },
+          "hide": false,
+          "query": "from(bucket:\"modbus2\")\r\n|> range(start: -5d)\r\n|> filter(fn: (r) => r._field == \"Temperature5\")\r\n|> map(fn: (r) => ({\r\n    _field: \"센서5 온도\",\r\n    _time: r._time,\r\n    _value: r._value/10\r\n  }))",
+          "refId": "G"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "edln43xbpkfeoa"
+          },
+          "hide": false,
+          "query": "from(bucket:\"modbus2\")\r\n|> range(start: -5d)\r\n|> filter(fn: (r) => r._field == \"Temperature6\")\r\n|> map(fn: (r) => ({\r\n    _field: \"센서6 온도\",\r\n    _time: r._time,\r\n    _value: r._value/10\r\n  }))",
+          "refId": "H"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "edln43xbpkfeoa"
+          },
+          "hide": false,
+          "query": "from(bucket: \"modbus2\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"predict02\" and r[\"_field\"] == \"predict_temperature4\")\r\n  |> keep(columns: [\"_time\", \"_value\", \"_field\", \"_start\", \"_stop\"])\r\n  |> map(fn: (r) => ({\r\n      _field: \"센서4 예측온도\",\r\n      _time: r._time, \r\n      _value: r._value\r\n  }))",
+          "refId": "I"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "edln43xbpkfeoa"
+          },
+          "hide": false,
+          "query": "from(bucket: \"modbus2\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"predict02\" and r[\"_field\"] == \"predict_temperature5\")\r\n  |> keep(columns: [\"_time\", \"_value\", \"_field\", \"_start\", \"_stop\"])\r\n  |> map(fn: (r) => ({\r\n      _field: \"센서5 예측온도\",\r\n      _time: r._time, \r\n      _value: r._value\r\n  }))",
+          "refId": "J"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "edln43xbpkfeoa"
+          },
+          "hide": false,
+          "query": "from(bucket: \"modbus2\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"predict02\" and r[\"_field\"] == \"predict_temperature6\")\r\n  |> keep(columns: [\"_time\", \"_value\", \"_field\", \"_start\", \"_stop\"])\r\n  |> map(fn: (r) => ({\r\n      _field: \"센서6 예측온도\",\r\n      _time: r._time, \r\n      _value: r._value\r\n  }))",
+          "refId": "K"
+        }
+      ],
+      "title": "현재온도 및 예측온도",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "edln43xbpkfeoa"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "celsius"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "CPU 센서1 예측온도"
+            },
+            "properties": [
+              {
+                "id": "custom.lineStyle",
+                "value": {
+                  "dash": [
+                    10,
+                    10
+                  ],
+                  "fill": "dash"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "CPU 센서2 예측온도"
+            },
+            "properties": [
+              {
+                "id": "custom.lineStyle",
+                "value": {
+                  "dash": [
+                    10,
+                    10
+                  ],
+                  "fill": "dash"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "CPU 센서3 예측온도"
+            },
+            "properties": [
+              {
+                "id": "custom.lineStyle",
+                "value": {
+                  "dash": [
+                    10,
+                    10
+                  ],
+                  "fill": "dash"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "CPU 센서4 예측온도"
+            },
+            "properties": [
+              {
+                "id": "custom.lineStyle",
+                "value": {
+                  "dash": [
+                    10,
+                    10
+                  ],
+                  "fill": "dash"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "CPU 센서5 예측온도"
+            },
+            "properties": [
+              {
+                "id": "custom.lineStyle",
+                "value": {
+                  "dash": [
+                    10,
+                    10
+                  ],
+                  "fill": "dash"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "CPU 센서6 예측온도"
+            },
+            "properties": [
+              {
+                "id": "custom.lineStyle",
+                "value": {
+                  "dash": [
+                    10,
+                    10
+                  ],
+                  "fill": "dash"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 9,
+        "x": 9,
+        "y": 7
+      },
+      "id": 40,
+      "maxDataPoints": 50000,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "query": "from(bucket:\"modbus2\")\r\n|> range(start: -5d)\r\n|> filter(fn: (r) => r._field == \"CPU Temperature1\")\r\n|> map(fn: (r) => ({\r\n    _field: \"CPU 센서1 온도\",\r\n    _time: r._time, \r\n    _value: r._value\r\n  }))",
+          "refId": "CPU Temperature1"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "hide": false,
+          "query": "from(bucket:\"modbus2\")\r\n|> range(start: -5d)\r\n|> filter(fn: (r) => r._field == \"CPU Temperature2\")\r\n|> map(fn: (r) => ({\r\n    _field: \"CPU 센서2 온도\",\r\n    _time: r._time, \r\n    _value: r._value\r\n  }))",
+          "refId": "CPU Temperature2"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "hide": false,
+          "query": "from(bucket:\"modbus2\")\r\n|> range(start: -5d)\r\n|> filter(fn: (r) => r._field == \"CPU Temperature3\")\r\n|> map(fn: (r) => ({\r\n    _field: \"CPU 센서3 온도\",\r\n    _time: r._time, \r\n    _value: r._value\r\n  }))",
+          "refId": "CPU Temperature3"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "hide": false,
+          "query": "from(bucket:\"modbus2\")\r\n|> range(start: -5d)\r\n|> filter(fn: (r) => r._field == \"CPU Temperature4\")\r\n|> map(fn: (r) => ({\r\n    _field: \"CPU 센서4 온도\",\r\n    _time: r._time, \r\n    _value: r._value\r\n  }))",
+          "refId": "CPU Temperature4"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "hide": false,
+          "query": "from(bucket:\"modbus2\")\r\n|> range(start: -5d)\r\n|> filter(fn: (r) => r._field == \"CPU Temperature5\")\r\n|> map(fn: (r) => ({\r\n    _field: \"CPU 센서5 온도\",\r\n    _time: r._time, \r\n    _value: r._value\r\n  }))",
+          "refId": "CPU Temperature5"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "hide": false,
+          "query": "from(bucket:\"modbus2\")\r\n|> range(start: -5d)\r\n|> filter(fn: (r) => r._field == \"CPU Temperature6\")\r\n|> map(fn: (r) => ({\r\n    _field: \"CPU 센서6 온도\",\r\n    _time: r._time, \r\n    _value: r._value\r\n  }))",
+          "refId": "CPU Temperature6"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "edln43xbpkfeoa"
+          },
+          "hide": false,
+          "query": "from(bucket: \"modbus2\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"predict02\" and r[\"_field\"] == \"predict_cpu_temperature1\")\r\n  |> keep(columns: [\"_time\", \"_value\", \"_field\", \"_start\", \"_stop\"])\r\n  |> map(fn: (r) => ({\r\n      _field: \"CPU 센서1 예측온도\",\r\n      _time: r._time, \r\n      _value: r._value\r\n  }))",
+          "refId": "predict_CPU_temperature1"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "edln43xbpkfeoa"
+          },
+          "hide": false,
+          "query": "from(bucket: \"modbus2\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"predict02\" and r[\"_field\"] == \"predict_cpu_temperature2\")\r\n  |> keep(columns: [\"_time\", \"_value\", \"_field\", \"_start\", \"_stop\"])\r\n  |> map(fn: (r) => ({\r\n      _field: \"CPU 센서2 예측온도\",\r\n      _time: r._time, \r\n      _value: r._value\r\n  }))",
+          "refId": "predict_CPU_temperature2"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "edln43xbpkfeoa"
+          },
+          "hide": false,
+          "query": "from(bucket: \"modbus2\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"predict02\" and r[\"_field\"] == \"predict_cpu_temperature3\")\r\n  |> keep(columns: [\"_time\", \"_value\", \"_field\", \"_start\", \"_stop\"])\r\n  |> map(fn: (r) => ({\r\n      _field: \"CPU 센서3 예측온도\",\r\n      _time: r._time, \r\n      _value: r._value\r\n  }))",
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "edln43xbpkfeoa"
+          },
+          "hide": false,
+          "query": "from(bucket: \"modbus2\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"predict02\" and r[\"_field\"] == \"predict_cpu_temperature4\")\r\n  |> keep(columns: [\"_time\", \"_value\", \"_field\", \"_start\", \"_stop\"])\r\n  |> map(fn: (r) => ({\r\n      _field: \"CPU 센서4 예측온도\",\r\n      _time: r._time, \r\n      _value: r._value\r\n  }))",
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "edln43xbpkfeoa"
+          },
+          "hide": false,
+          "query": "from(bucket: \"modbus2\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"predict02\" and r[\"_field\"] == \"predict_cpu_temperature5\")\r\n  |> keep(columns: [\"_time\", \"_value\", \"_field\", \"_start\", \"_stop\"])\r\n  |> map(fn: (r) => ({\r\n      _field: \"CPU 센서5 예측온도\",\r\n      _time: r._time, \r\n      _value: r._value\r\n  }))",
+          "refId": "C"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "edln43xbpkfeoa"
+          },
+          "hide": false,
+          "query": "from(bucket: \"modbus2\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"predict02\" and r[\"_field\"] == \"predict_cpu_temperature6\")\r\n  |> keep(columns: [\"_time\", \"_value\", \"_field\", \"_start\", \"_stop\"])\r\n  |> map(fn: (r) => ({\r\n      _field: \"CPU 센서6 예측온도\",\r\n      _time: r._time, \r\n      _value: r._value\r\n  }))",
+          "refId": "D"
+        }
+      ],
+      "title": "현재 CPU 온도 및 예측 온도",
+      "type": "timeseries"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 12
+      },
+      "id": 37,
+      "panels": [],
+      "title": "진동",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "bdjkyq1kez1fkc"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 9,
+        "x": 0,
+        "y": 13
+      },
+      "id": 28,
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "<h6 style=\"text-align:center; font-size:10px;\">센서 1<h6>",
+        "mode": "html"
+      },
+      "pluginVersion": "10.4.2",
+      "transparent": true,
+      "type": "text"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "edln43xbpkfeoa"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "massmg"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 15,
+        "x": 9,
+        "y": 13
+      },
+      "id": 16,
+      "maxDataPoints": 50000,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "10.4.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "query": "from(bucket:\"modbus2\")\r\n|> range(start: -5d)\r\n|> filter(fn: (r) => r._field == \"x1\")\r\n|> map(fn: (r) => ({\r\n    _field: \"x1\",\r\n    _time: r._time,\r\n    _value: r._value\r\n  }))\r\n",
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "hide": false,
+          "query": "from(bucket:\"modbus2\")\r\n|> range(start: -5d)\r\n|> filter(fn: (r) => r._field == \"y1\")\r\n|> map(fn: (r) => ({\r\n    _field: \"y1\",\r\n    _time: r._time,\r\n    _value: r._value\r\n  }))\r\n",
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "hide": false,
+          "query": "from(bucket:\"modbus2\")\r\n|> range(start: -5d)\r\n|> filter(fn: (r) => r._field == \"z1\")\r\n|> map(fn: (r) => ({\r\n    _field: \"z1\",\r\n    _time: r._time,\r\n    _value: r._value\r\n  }))\r\n",
+          "refId": "C"
+        }
+      ],
+      "title": "센서 1 진동 차트",
+      "transparent": true,
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "edln43xbpkfeoa"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 0,
+          "mappings": [],
+          "max": 100,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "super-light-yellow",
+                "value": 33
+              },
+              {
+                "color": "dark-orange",
+                "value": 55
+              },
+              {
+                "color": "dark-red",
+                "value": 65
+              }
+            ]
+          },
+          "unit": "massmg"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 0,
+        "y": 14
+      },
+      "id": 3,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "sizing": "auto",
+        "text": {
+          "titleSize": 1
+        }
+      },
+      "pluginVersion": "10.4.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "query": "from(bucket:\"modbus2\")\r\n|> range(start: -5m)\r\n|> filter(fn: (r) => r._field == \"x1\")\r\n|> map(fn: (r) => ({\r\n    _field: \"X\",\r\n    _time: r._time,\r\n    _value: r._value\r\n  }))\r\n|> last()\r\n\r\n\r\n",
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "hide": false,
+          "refId": "B"
+        }
+      ],
+      "title": "X",
+      "transparent": true,
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "edln43xbpkfeoa"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 0,
+          "mappings": [],
+          "max": 250,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "super-light-yellow",
+                "value": 49
+              },
+              {
+                "color": "dark-orange",
+                "value": 65
+              },
+              {
+                "color": "red",
+                "value": 82
+              }
+            ]
+          },
+          "unit": "massmg"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 3,
+        "y": 14
+      },
+      "id": 4,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "sizing": "auto",
+        "text": {
+          "titleSize": 1
+        }
+      },
+      "pluginVersion": "10.4.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "query": "from(bucket:\"modbus2\")\r\n|> range(start: -5m)\r\n|> filter(fn: (r) => r._field == \"y1\")\r\n|> map(fn: (r) => ({\r\n    _field: \"X\",\r\n    _time: r._time,\r\n    _value: r._value\r\n  }))\r\n|> last()",
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "hide": false,
+          "refId": "B"
+        }
+      ],
+      "title": "Y",
+      "transparent": true,
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "edln43xbpkfeoa"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 0,
+          "mappings": [],
+          "max": 250,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "super-light-yellow",
+                "value": 95
+              },
+              {
+                "color": "dark-orange",
+                "value": 127
+              },
+              {
+                "color": "dark-red",
+                "value": 159
+              }
+            ]
+          },
+          "unit": "massmg"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 6,
+        "y": 14
+      },
+      "id": 5,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "sizing": "auto",
+        "text": {
+          "titleSize": 1
+        }
+      },
+      "pluginVersion": "10.4.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "query": "from(bucket:\"modbus2\")\r\n|> range(start: -5m)\r\n|> filter(fn: (r) => r._field == \"z1\")\r\n|> map(fn: (r) => ({\r\n    _field: \"Z\",\r\n    _time: r._time,\r\n    _value: r._value\r\n  }))\r\n|> last()",
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "hide": false,
+          "refId": "B"
+        }
+      ],
+      "title": "Z",
+      "transparent": true,
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "bdjkyq1kez1fkc"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 9,
+        "x": 0,
+        "y": 17
+      },
+      "id": 29,
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "<h6 style=\"text-align:center; font-size:10px;\">센서 2<h6>",
+        "mode": "html"
+      },
+      "pluginVersion": "10.4.2",
+      "transparent": true,
+      "type": "text"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "edln43xbpkfeoa"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "massmg"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 15,
+        "x": 9,
+        "y": 17
+      },
+      "id": 41,
+      "maxDataPoints": 50000,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "10.4.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "query": "from(bucket:\"modbus2\")\r\n|> range(start: -5d)\r\n|> filter(fn: (r) => r._field == \"x2\")\r\n|> map(fn: (r) => ({\r\n    _field: \"x2\",\r\n    _time: r._time,\r\n    _value: r._value\r\n  }))\r\n",
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "hide": false,
+          "query": "from(bucket:\"modbus2\")\r\n|> range(start: -5d)\r\n|> filter(fn: (r) => r._field == \"y2\")\r\n|> map(fn: (r) => ({\r\n    _field: \"y2\",\r\n    _time: r._time,\r\n    _value: r._value\r\n  }))\r\n",
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "hide": false,
+          "query": "from(bucket:\"modbus2\")\r\n|> range(start: -5d)\r\n|> filter(fn: (r) => r._field == \"z2\")\r\n|> map(fn: (r) => ({\r\n    _field: \"z2\",\r\n    _time: r._time,\r\n    _value: r._value\r\n  }))\r\n",
+          "refId": "C"
+        }
+      ],
+      "title": "센서 2 진동 차트",
+      "transparent": true,
+      "type": "timeseries"
+    },
+    {
+      "datasource": {},
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 0,
+          "mappings": [],
+          "max": 64,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 16
+              },
+              {
+                "color": "red",
+                "value": 40
+              }
+            ]
+          },
+          "unit": "massmg"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 0,
+        "y": 18
+      },
+      "id": 6,
+      "maxDataPoints": 50000,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "sizing": "auto",
+        "text": {
+          "titleSize": 1
+        }
+      },
+      "pluginVersion": "10.4.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "query": "from(bucket:\"modbus2\")\r\n|> range(start: -5d)\r\n|> filter(fn: (r) => r._field == \"x2\")\r\n|> map(fn: (r) => ({\r\n    _field: \"X\",\r\n    _time: r._time,\r\n    _value: r._value\r\n  }))\r\n|> aggregateWindow(every: 30s, fn: mean, createEmpty: false)\r\n",
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "hide": false,
+          "refId": "B"
+        }
+      ],
+      "title": "X",
+      "transparent": true,
+      "type": "gauge"
+    },
+    {
+      "datasource": {},
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 0,
+          "mappings": [],
+          "max": 120,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "super-light-yellow",
+                "value": 48
+              },
+              {
+                "color": "dark-orange",
+                "value": 80
+              },
+              {
+                "color": "dark-red",
+                "value": 97
+              }
+            ]
+          },
+          "unit": "massmg"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 3,
+        "y": 18
+      },
+      "id": 7,
+      "maxDataPoints": 50000,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "sizing": "auto",
+        "text": {
+          "titleSize": 1
+        }
+      },
+      "pluginVersion": "10.4.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "query": "from(bucket:\"modbus2\")\r\n|> range(start: -5d)\r\n|> filter(fn: (r) => r._field == \"y2\")\r\n|> map(fn: (r) => ({\r\n    _field: \"X\",\r\n    _time: r._time,\r\n    _value: r._value\r\n  }))\r\n|> aggregateWindow(every: 30s, fn: mean, createEmpty: false)\r\n",
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "hide": false,
+          "refId": "B"
+        }
+      ],
+      "title": "Y",
+      "transparent": true,
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "edln43xbpkfeoa"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 0,
+          "mappings": [],
+          "max": 230,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "super-light-yellow",
+                "value": 127
+              },
+              {
+                "color": "orange",
+                "value": 144
+              },
+              {
+                "color": "red",
+                "value": 176
+              }
+            ]
+          },
+          "unit": "massmg"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 6,
+        "y": 18
+      },
+      "id": 8,
+      "maxDataPoints": 50000,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "sizing": "auto",
+        "text": {
+          "titleSize": 1
+        }
+      },
+      "pluginVersion": "10.4.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "query": "from(bucket:\"modbus2\")\r\n|> range(start: -5d)\r\n|> filter(fn: (r) => r._field == \"z2\")\r\n|> map(fn: (r) => ({\r\n    _field: \"Z\",\r\n    _time: r._time,\r\n    _value: r._value\r\n  }))\r\n",
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "hide": false,
+          "refId": "B"
+        }
+      ],
+      "title": "Z",
+      "transparent": true,
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "bdjkyq1kez1fkc"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 9,
+        "x": 0,
+        "y": 21
+      },
+      "id": 30,
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "<h6 style=\"text-align:center; font-size:10px;\">센서 3<h6>",
+        "mode": "html"
+      },
+      "pluginVersion": "10.4.2",
+      "transparent": true,
+      "type": "text"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "edln43xbpkfeoa"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "massmg"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "predict02 prediction_y3 value1"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "y3"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "light-blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "센서3 x 예측"
+            },
+            "properties": [
+              {
+                "id": "custom.lineStyle",
+                "value": {
+                  "dash": [
+                    0,
+                    10
+                  ],
+                  "fill": "dot"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "센서3 y 예측"
+            },
+            "properties": [
+              {
+                "id": "custom.lineStyle",
+                "value": {
+                  "dash": [
+                    0,
+                    10
+                  ],
+                  "fill": "dot"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "센서3 z 예측"
+            },
+            "properties": [
+              {
+                "id": "custom.lineStyle",
+                "value": {
+                  "dash": [
+                    0,
+                    10
+                  ],
+                  "fill": "dot"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "z3"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "purple",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 15,
+        "x": 9,
+        "y": 21
+      },
+      "id": 42,
+      "maxDataPoints": 50000,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "10.4.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "query": "from(bucket:\"modbus2\")\r\n|> range(start: -5d)\r\n|> filter(fn: (r) => r._field == \"x3\")\r\n|> map(fn: (r) => ({\r\n    _field: \"x3\",\r\n    _time: r._time,\r\n    _value: r._value\r\n  }))\r\n",
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "hide": false,
+          "query": "from(bucket:\"modbus2\")\r\n|> range(start: -5d)\r\n|> filter(fn: (r) => r._field == \"y3\")\r\n|> map(fn: (r) => ({\r\n    _field: \"y3\",\r\n    _time: r._time,\r\n    _value: r._value\r\n  }))\r\n",
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "hide": false,
+          "query": "from(bucket:\"modbus2\")\r\n|> range(start: -5d)\r\n|> filter(fn: (r) => r._field == \"z3\")\r\n|> map(fn: (r) => ({\r\n    _field: \"z3\",\r\n    _time: r._time,\r\n    _value: r._value\r\n  }))\r\n",
+          "refId": "C"
+        }
+      ],
+      "title": "센서 3 진동 차트",
+      "transparent": true,
+      "type": "timeseries"
+    },
+    {
+      "datasource": {},
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 0,
+          "mappings": [],
+          "max": 350,
+          "min": -7,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "super-light-yellow",
+                "value": 129
+              },
+              {
+                "color": "dark-orange",
+                "value": 177
+              },
+              {
+                "color": "dark-red",
+                "value": 241
+              }
+            ]
+          },
+          "unit": "massmg"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 0,
+        "y": 22
+      },
+      "id": 9,
+      "maxDataPoints": 50000,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "sizing": "auto",
+        "text": {
+          "titleSize": 1
+        }
+      },
+      "pluginVersion": "10.4.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "query": "from(bucket:\"modbus2\")\r\n|> range(start: -5d)\r\n|> filter(fn: (r) => r._field == \"x3\")\r\n|> map(fn: (r) => ({\r\n    _field: \"X\",\r\n    _time: r._time,\r\n    _value: r._value\r\n  }))\r\n",
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "hide": false,
+          "refId": "B"
+        }
+      ],
+      "title": "X",
+      "transparent": true,
+      "type": "gauge"
+    },
+    {
+      "datasource": {},
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 0,
+          "mappings": [],
+          "max": 500,
+          "min": -7,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "super-light-yellow",
+                "value": 129
+              },
+              {
+                "color": "dark-orange",
+                "value": 257
+              },
+              {
+                "color": "dark-red",
+                "value": 401
+              }
+            ]
+          },
+          "unit": "massmg"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 3,
+        "y": 22
+      },
+      "id": 10,
+      "maxDataPoints": 100000,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "sizing": "auto",
+        "text": {
+          "titleSize": 1
+        }
+      },
+      "pluginVersion": "10.4.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "query": "from(bucket:\"modbus2\")\r\n|> range(start: -5d)\r\n|> filter(fn: (r) => r._field == \"y3\")\r\n|> map(fn: (r) => ({\r\n    _field: \"X\",\r\n    _time: r._time,\r\n    _value: r._value\r\n  }))\r\n",
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "hide": false,
+          "refId": "B"
+        }
+      ],
+      "title": "Y",
+      "transparent": true,
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "edln43xbpkfeoa"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 0,
+          "mappings": [],
+          "max": 350,
+          "min": -7,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "super-light-yellow",
+                "value": 97
+              },
+              {
+                "color": "dark-orange",
+                "value": 161
+              },
+              {
+                "color": "dark-red",
+                "value": 257
+              }
+            ]
+          },
+          "unit": "massmg"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 6,
+        "y": 22
+      },
+      "id": 11,
+      "maxDataPoints": 50000,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "sizing": "auto",
+        "text": {
+          "titleSize": 1
+        }
+      },
+      "pluginVersion": "10.4.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "query": "from(bucket:\"modbus2\")\r\n|> range(start: -5d)\r\n|> filter(fn: (r) => r._field == \"z3\")\r\n|> map(fn: (r) => ({\r\n    _field: \"Z\",\r\n    _time: r._time,\r\n    _value: r._value\r\n  }))\r\n",
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "hide": false,
+          "refId": "B"
+        }
+      ],
+      "title": "Z",
+      "transparent": true,
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "bdjkyq1kez1fkc"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 9,
+        "x": 0,
+        "y": 25
+      },
+      "id": 31,
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "<h6 style=\"text-align:center; font-size:10px;\">센서 4<h6>",
+        "mode": "html"
+      },
+      "pluginVersion": "10.4.2",
+      "transparent": true,
+      "type": "text"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "edln43xbpkfeoa"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "massmg"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 15,
+        "x": 9,
+        "y": 25
+      },
+      "id": 43,
+      "maxDataPoints": 50000,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "10.4.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "query": "from(bucket:\"modbus2\")\r\n|> range(start: -5d)\r\n|> filter(fn: (r) => r._field == \"x4\")\r\n|> map(fn: (r) => ({\r\n    _field: \"x4\",\r\n    _time: r._time,\r\n    _value: r._value\r\n  }))\r\n",
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "hide": false,
+          "query": "from(bucket:\"modbus2\")\r\n|> range(start: -5d)\r\n|> filter(fn: (r) => r._field == \"y4\")\r\n|> map(fn: (r) => ({\r\n    _field: \"y4\",\r\n    _time: r._time,\r\n    _value: r._value\r\n  }))\r\n",
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "hide": false,
+          "query": "from(bucket:\"modbus2\")\r\n|> range(start: -5d)\r\n|> filter(fn: (r) => r._field == \"z4\")\r\n|> map(fn: (r) => ({\r\n    _field: \"z4\",\r\n    _time: r._time,\r\n    _value: r._value\r\n  }))\r\n",
+          "refId": "C"
+        }
+      ],
+      "title": "센서 4 진동 차트",
+      "transparent": true,
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "edln43xbpkfeoa"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 0,
+          "mappings": [],
+          "max": 15,
+          "min": -7,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 7
+              },
+              {
+                "color": "red",
+                "value": 10
+              }
+            ]
+          },
+          "unit": "massmg"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 0,
+        "y": 26
+      },
+      "id": 20,
+      "maxDataPoints": 50000,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "sizing": "auto",
+        "text": {
+          "titleSize": 1
+        }
+      },
+      "pluginVersion": "10.4.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "query": "from(bucket:\"modbus2\")\r\n|> range(start: -5d)\r\n|> filter(fn: (r) => r._field == \"x4\")\r\n|> map(fn: (r) => ({\r\n    _field: \"X\",\r\n    _time: r._time,\r\n    _value: r._value\r\n  }))\r\n\r\n\r\n",
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "hide": false,
+          "refId": "B"
+        }
+      ],
+      "title": "X",
+      "transparent": true,
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "edln43xbpkfeoa"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 0,
+          "mappings": [],
+          "max": 15,
+          "min": -7,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 7
+              },
+              {
+                "color": "red",
+                "value": 10
+              }
+            ]
+          },
+          "unit": "massmg"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 3,
+        "y": 26
+      },
+      "id": 21,
+      "maxDataPoints": 50000,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "sizing": "auto",
+        "text": {
+          "titleSize": 1
+        }
+      },
+      "pluginVersion": "10.4.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "query": "from(bucket:\"modbus2\")\r\n|> range(start: -5d)\r\n|> filter(fn: (r) => r._field == \"y4\")\r\n|> map(fn: (r) => ({\r\n    _field: \"Y\",\r\n    _time: r._time,\r\n    _value: r._value\r\n  }))\r\n",
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "hide": false,
+          "refId": "B"
+        }
+      ],
+      "title": "Y",
+      "transparent": true,
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "edln43xbpkfeoa"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 0,
+          "mappings": [],
+          "max": 15,
+          "min": -7,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 900
+              },
+              {
+                "color": "red",
+                "value": 1000
+              }
+            ]
+          },
+          "unit": "massmg"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 6,
+        "y": 26
+      },
+      "id": 22,
+      "maxDataPoints": 50000,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "sizing": "auto",
+        "text": {
+          "titleSize": 1
+        }
+      },
+      "pluginVersion": "10.4.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "query": "from(bucket:\"modbus2\")\r\n|> range(start: -5d)\r\n|> filter(fn: (r) => r._field == \"z4\")\r\n|> map(fn: (r) => ({\r\n    _field: \"Z\",\r\n    _time: r._time,\r\n    _value: r._value\r\n  }))\r\n",
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "hide": false,
+          "refId": "B"
+        }
+      ],
+      "title": "Z",
+      "transparent": true,
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "bdjkyq1kez1fkc"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 9,
+        "x": 0,
+        "y": 29
+      },
+      "id": 32,
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "<h6 style=\"text-align:center; font-size:10px;\">센서 5<h6>",
+        "mode": "html"
+      },
+      "pluginVersion": "10.4.2",
+      "transparent": true,
+      "type": "text"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "edln43xbpkfeoa"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "massmg"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 15,
+        "x": 9,
+        "y": 29
+      },
+      "id": 44,
+      "maxDataPoints": 50000,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "10.4.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "query": "from(bucket:\"modbus2\")\r\n|> range(start: -5d)\r\n|> filter(fn: (r) => r._field == \"x5\")\r\n|> map(fn: (r) => ({\r\n    _field: \"x5\",\r\n    _time: r._time,\r\n    _value: r._value\r\n  }))\r\n",
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "hide": false,
+          "query": "from(bucket:\"modbus2\")\r\n|> range(start: -5d)\r\n|> filter(fn: (r) => r._field == \"y5\")\r\n|> map(fn: (r) => ({\r\n    _field: \"y5\",\r\n    _time: r._time,\r\n    _value: r._value\r\n  }))\r\n",
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "hide": false,
+          "query": "from(bucket:\"modbus2\")\r\n|> range(start: -5d)\r\n|> filter(fn: (r) => r._field == \"z5\")\r\n|> map(fn: (r) => ({\r\n    _field: \"z5\",\r\n    _time: r._time,\r\n    _value: r._value\r\n  }))\r\n",
+          "refId": "C"
+        }
+      ],
+      "title": "센서 5 진동 차트",
+      "transparent": true,
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "edln43xbpkfeoa"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 0,
+          "mappings": [],
+          "max": 15,
+          "min": -7,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 7
+              },
+              {
+                "color": "red",
+                "value": 10
+              }
+            ]
+          },
+          "unit": "massmg"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 0,
+        "y": 30
+      },
+      "id": 23,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "sizing": "auto",
+        "text": {
+          "titleSize": 1
+        }
+      },
+      "pluginVersion": "10.4.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "query": "from(bucket:\"modbus2\")\r\n|> range(start: -5m)\r\n|> filter(fn: (r) => r._field == \"x5\")\r\n|> map(fn: (r) => ({\r\n    _field: \"X\",\r\n    _time: r._time,\r\n    _value: r._value\r\n  }))\r\n  |> last()\r\n\r\n\r\n\r\n",
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "hide": false,
+          "refId": "B"
+        }
+      ],
+      "title": "X",
+      "transparent": true,
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "edln43xbpkfeoa"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 0,
+          "mappings": [],
+          "max": 15,
+          "min": -7,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 7
+              },
+              {
+                "color": "red",
+                "value": 10
+              }
+            ]
+          },
+          "unit": "massmg"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 3,
+        "y": 30
+      },
+      "id": 24,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "sizing": "auto",
+        "text": {
+          "titleSize": 1
+        }
+      },
+      "pluginVersion": "10.4.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "query": "from(bucket:\"modbus2\")\r\n|> range(start: -5m)\r\n|> filter(fn: (r) => r._field == \"y5\")\r\n|> map(fn: (r) => ({\r\n    _field: \"X\",\r\n    _time: r._time,\r\n    _value: r._value\r\n  }))\r\n  |> last()\r\n",
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "hide": false,
+          "refId": "B"
+        }
+      ],
+      "title": "Y",
+      "transparent": true,
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "edln43xbpkfeoa"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 0,
+          "mappings": [],
+          "max": 15,
+          "min": -7,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 900
+              },
+              {
+                "color": "red",
+                "value": 1000
+              }
+            ]
+          },
+          "unit": "massmg"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 6,
+        "y": 30
+      },
+      "id": 25,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "sizing": "auto",
+        "text": {
+          "titleSize": 1
+        }
+      },
+      "pluginVersion": "10.4.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "query": "from(bucket:\"modbus2\")\r\n|> range(start: -5m)\r\n|> filter(fn: (r) => r._field == \"z5\")\r\n|> map(fn: (r) => ({\r\n    _field: \"Z\",\r\n    _time: r._time,\r\n    _value: r._value\r\n  }))\r\n|> last()\r\n\r\n",
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "hide": false,
+          "refId": "B"
+        }
+      ],
+      "title": "Z",
+      "transparent": true,
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "bdjkyq1kez1fkc"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 9,
+        "x": 0,
+        "y": 33
+      },
+      "id": 33,
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "<h6 style=\"text-align:center; font-size:10px;\">센서 6<h6>",
+        "mode": "html"
+      },
+      "pluginVersion": "10.4.2",
+      "transparent": true,
+      "type": "text"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "edln43xbpkfeoa"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "massmg"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 15,
+        "x": 9,
+        "y": 33
+      },
+      "id": 45,
+      "maxDataPoints": 50000,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "10.4.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "query": "from(bucket:\"modbus2\")\r\n|> range(start: -5d)\r\n|> filter(fn: (r) => r._field == \"x6\")\r\n|> map(fn: (r) => ({\r\n    _field: \"x6\",\r\n    _time: r._time,\r\n    _value: r._value\r\n  }))\r\n",
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "hide": false,
+          "query": "from(bucket:\"modbus2\")\r\n|> range(start: -5d)\r\n|> filter(fn: (r) => r._field == \"y6\")\r\n|> map(fn: (r) => ({\r\n    _field: \"y6\",\r\n    _time: r._time,\r\n    _value: r._value\r\n  }))\r\n",
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "hide": false,
+          "query": "from(bucket:\"modbus2\")\r\n|> range(start: -5d)\r\n|> filter(fn: (r) => r._field == \"z6\")\r\n|> map(fn: (r) => ({\r\n    _field: \"z6\",\r\n    _time: r._time,\r\n    _value: r._value\r\n  }))\r\n",
+          "refId": "C"
+        }
+      ],
+      "title": "센서 6 진동 차트",
+      "transparent": true,
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "edln43xbpkfeoa"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 0,
+          "mappings": [],
+          "max": 15,
+          "min": -7,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 7
+              },
+              {
+                "color": "red",
+                "value": 10
+              }
+            ]
+          },
+          "unit": "massmg"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 0,
+        "y": 34
+      },
+      "id": 34,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "sizing": "auto",
+        "text": {
+          "titleSize": 1
+        }
+      },
+      "pluginVersion": "10.4.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "query": "from(bucket:\"modbus2\")\r\n|> range(start: -5m)\r\n|> filter(fn: (r) => r._field == \"x6\")\r\n|> map(fn: (r) => ({\r\n    _field: \"X\",\r\n    _time: r._time,\r\n    _value: r._value\r\n  }))\r\n  |> last()\r\n\r\n\r\n\r\n",
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "hide": false,
+          "refId": "B"
+        }
+      ],
+      "title": "X",
+      "transparent": true,
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "edln43xbpkfeoa"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 0,
+          "mappings": [],
+          "max": 15,
+          "min": -7,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 7
+              },
+              {
+                "color": "red",
+                "value": 10
+              }
+            ]
+          },
+          "unit": "massmg"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 3,
+        "y": 34
+      },
+      "id": 35,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "sizing": "auto",
+        "text": {
+          "titleSize": 1
+        }
+      },
+      "pluginVersion": "10.4.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "query": "from(bucket:\"modbus2\")\r\n|> range(start: -5m)\r\n|> filter(fn: (r) => r._field == \"y6\")\r\n|> map(fn: (r) => ({\r\n    _field: \"X\",\r\n    _time: r._time,\r\n    _value: r._value\r\n  }))\r\n  |> last()\r\n\r\n",
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "hide": false,
+          "refId": "B"
+        }
+      ],
+      "title": "Y",
+      "transparent": true,
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "edln43xbpkfeoa"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 0,
+          "mappings": [],
+          "max": 15,
+          "min": -7,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 900
+              },
+              {
+                "color": "red",
+                "value": 1000
+              }
+            ]
+          },
+          "unit": "massmg"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 6,
+        "y": 34
+      },
+      "id": 36,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "sizing": "auto",
+        "text": {
+          "titleSize": 1
+        }
+      },
+      "pluginVersion": "10.4.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "query": "from(bucket:\"modbus2\")\r\n|> range(start: -5m)\r\n|> filter(fn: (r) => r._field == \"z6\")\r\n|> map(fn: (r) => ({\r\n    _field: \"Z\",\r\n    _time: r._time,\r\n    _value: r._value\r\n  }))\r\n  |> last()\r\n\r\n",
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bdjkyq1kez1fkc"
+          },
+          "hide": false,
+          "refId": "B"
+        }
+      ],
+      "title": "Z",
+      "transparent": true,
+      "type": "gauge"
+    }
+  ],
+  "refresh": "",
+  "schemaVersion": 39,
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "2024-07-09T15:00:00.000Z",
+    "to": "2024-07-10T14:59:59.000Z"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "1m",
+      "10m"
+    ]
+  },
+  "timezone": "browser",
+  "title": "대전류 인가 장치 v3",
+  "uid": "edjoi6ecbf7r45",
+  "version": 45,
+  "weekStart": ""
+}

@@ -16,7 +16,6 @@
 
 RS-485 유선 네트워크를 통해 들어오는 온도, 진동값을 통해 대쉬보드를 만들고 AI학습하여 안전, 주의, 경고, 위험 4가지로 나눠 분류하였다.
 
-![image (6)](https://github.com/user-attachments/assets/8b2ee216-149b-4abf-a25a-ceb2ffdad585)
 
 
 <br />
@@ -33,6 +32,7 @@ DataBase : InfluxDB
 
 ## 🤩 Preview
 
+![image (7)](https://github.com/user-attachments/assets/a4e569f9-a751-44e5-a429-a5763e361b93)
 
 
 
